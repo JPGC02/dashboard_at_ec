@@ -1,0 +1,25 @@
+# Netlify - Dashboard AT Engenharia Clinica
+# Site estatico, sem build step. Servimos index.html direto da raiz.
+
+[build]
+  publish = "."
+  command = ""
+
+# Cache curto pro HTML pra que atualizacoes do cron apareçam rapido
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Headers de seguranca basicos
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
